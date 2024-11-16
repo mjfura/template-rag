@@ -1,7 +1,8 @@
 import streamlit as st
 from src.loaders.app import loader_use_case
-from src.loaders.adapters import create_file_adapter,create_document_adapter
+from src.loaders.adapters import create_file_adapter,create_document_adapter,create_document_value_adapter
 from src.cleaner.app import cleaner_use_case
+from src.chunking.app import chunking_use_case
 def header():
     st.title("Actividad 01")
     st.subheader("Carga de Documentos")
@@ -20,6 +21,11 @@ def launch_app():
         file = create_file_adapter(uploaded_file)
         docs=loader_use_case.upload_to_bucket(file)
         docs = create_document_adapter(docs)
+        st.write('Convirtiendo Document a DocumentValue')
+        docs_values = create_document_value_adapter(docs)
+        chunks = chunking_use_case.get_chunks(docs_values)
+        chunks_as_documents = create_document_adapter(chunks)
+        print(f'Chunks: {chunks_as_documents}')
         text_example = 'Hi, this is an example for apply a cleaning process to a text.'
         st.write("Texto de ejemplo:")
         st.write(text_example)
