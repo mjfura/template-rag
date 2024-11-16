@@ -1,0 +1,22 @@
+version: '3.9'
+services:
+  actividad_1_service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: actividad_1_container
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    environment:
+      - PORT=8501
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    stdin_open: true  # Permite mantener la terminal abierta
+    tty: true         # Necesario para un shell interactivo
+    command: >
+      bash -c "source /opt/conda/etc/profile.d/conda.sh &&
+               conda activate actividad_1 &&
+               tail -f /dev/null"
