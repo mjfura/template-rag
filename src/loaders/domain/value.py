@@ -1,3 +1,5 @@
-from .entity import FileEntity
+from .entity import FileEntity,DocumentEntity
 class FileValue(FileEntity):
+    pass
+class DocumentValue(DocumentEntity):
     pass

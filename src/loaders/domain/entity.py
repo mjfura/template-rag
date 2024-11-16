@@ -7,3 +7,8 @@ class FileEntity(ABC):
     type: str
     size: int
     content: bytes
+
+@dataclass
+class DocumentEntity(ABC):
+    content:str
+    metadata: dict
