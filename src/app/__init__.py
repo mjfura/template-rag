@@ -3,6 +3,7 @@ from src.loaders.app import loader_use_case
 from src.loaders.adapters import create_file_adapter,create_document_adapter,create_document_value_adapter
 from src.cleaner.app import cleaner_use_case
 from src.chunking.app import chunking_use_case
+from src.embedding.app import embeddings_use_case
 def header():
     st.title("Actividad 01")
     st.subheader("Carga de Documentos")
@@ -32,5 +33,8 @@ def launch_app():
         text_cleaned = cleaner_use_case.clean_text(text_example)
         st.write("Texto limpio:")
         st.write(text_cleaned)
-        
+        st.write('Convirtiendo texto a embeddings...')
+        embedding=embeddings_use_case.get_embedding(text_cleaned)
+        st.write("Embedding:")
+        st.write(embedding)
         st.write("Archivo guardado en la carpeta /bucket.")
