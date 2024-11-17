@@ -4,6 +4,8 @@ from src.loaders.adapters import create_file_adapter,create_document_adapter,cre
 from src.cleaner.app import cleaner_use_case
 from src.chunking.app import chunking_use_case
 from src.embedding.app import embeddings_use_case
+from src.vector_store_client.infrastructure import QdrantVectorStoreRepository
+from src.vector_store_client.use_case import VectorStoreUseCase
 def header():
     st.title("Actividad 01")
     st.subheader("Carga de Documentos")
@@ -11,6 +13,8 @@ def header():
 
 
 def launch_app():
+    qdrant_repository = QdrantVectorStoreRepository(embeddings_use_case.get_model_embedding(),'archivos_uk')
+    vector_store_use_case = VectorStoreUseCase(qdrant_repository)
     header()
     uploaded_file = st.file_uploader("Cargar archivo PDF", type=["pdf"])
     if uploaded_file is not None:
@@ -37,4 +41,19 @@ def launch_app():
         embedding=embeddings_use_case.get_embedding(text_cleaned)
         st.write("Embedding:")
         st.write(embedding)
+        list_ids=vector_store_use_case.add_documents(chunks)
+        st.write("Documentos guardados en el Vector Store.")
+        st.write("IDs de los documentos:")
+        st.write(list_ids)
         st.write("Archivo guardado en la carpeta /bucket.")
+    
+    st.subheader("Búsqueda de Documentos")
+    query = st.text_input("Ingrese una consulta:")
+    if st.button("Buscar"):
+        st.write("Buscando documentos...")
+        documents = vector_store_use_case.search(query)
+        st.write("Documentos encontrados:")
+        for document in documents:
+            st.write(document.content)
+            st.write(document.metadata)
+            st.write("----")
