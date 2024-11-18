@@ -18,5 +18,5 @@ services:
     tty: true         # Necesario para un shell interactivo
     command: >
       bash -c "source /opt/conda/etc/profile.d/conda.sh &&
-               conda activate actividad_1 &&
-               tail -f /dev/null"
+               conda activate environment_proyecto_aplicado &&
+               streamlit run main_app.py"

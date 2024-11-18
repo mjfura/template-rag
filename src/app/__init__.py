@@ -3,6 +3,7 @@ from src.loaders.app import loader_use_case
 from src.loaders.adapters import create_file_adapter,create_document_adapter,create_document_value_adapter
 from src.cleaner.app import cleaner_use_case
 from src.chunking.app import chunking_use_case
+from src.chunking.adapters import create_document_from_chunk_adapter
 from src.embedding.app import embeddings_use_case
 from src.vector_store_client.infrastructure import QdrantVectorStoreRepository
 from src.vector_store_client.use_case import VectorStoreUseCase
@@ -29,7 +30,7 @@ def launch_app():
         st.write('Convirtiendo Document a DocumentValue')
         docs_values = create_document_value_adapter(docs)
         chunks = chunking_use_case.get_chunks(docs_values)
-        chunks_as_documents = create_document_adapter(chunks)
+        chunks_as_documents = create_document_from_chunk_adapter(chunks)
         print(f'Chunks: {chunks_as_documents}')
         text_example = 'Hi, this is an example for apply a cleaning process to a text.'
         st.write("Texto de ejemplo:")
