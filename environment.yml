@@ -126,6 +126,7 @@ dependencies:
       - distro==1.9.0
       - durationpy==0.9
       - emoji==2.14.0
+      - en-core-web-sm==3.8.0
       - es-core-news-sm==3.8.0
       - eval-type-backport==0.2.0
       - fastapi==0.115.4
@@ -232,7 +233,7 @@ dependencies:
       - pypdf==5.1.0
       - pypika==0.48.9
       - pyproject-hooks==1.2.0
-      - python-dateutil==2.8.2
+      - python-dateutil==2.9.0.post0
       - python-dotenv==1.0.1
       - python-iso639==2024.10.22
       - python-magic==0.4.27
