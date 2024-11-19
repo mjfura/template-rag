@@ -1,5 +1,6 @@
-from .langchain_instance import chunking_use_case
+from .langchain_instance import chunking_use_case,pipeline_chunking
 
 __all__ = [
-    "chunking_use_case"
+    "chunking_use_case",
+    "pipeline_chunking"
 ]
