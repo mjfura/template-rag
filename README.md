@@ -1,60 +1,25 @@
-# Building an End-to-End Retrieval-Augmented Generation System
-
-Welcome to the **Building an End-to-End Retrieval-Augmented Generation System** repository. This repository is designed to guide you through the process of creating a complete Retrieval-Augmented Generation (RAG) system from scratch, following a structured curriculum.
-
-## Setup Instructions
-
-To get started with the course:
-
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/CarlosCaris/practicos-rag.git
-2. Create a virtual environment
-    ```bash
-    python -m vevn .venv
-3. Activate the environment
-   ```bash
-    # On Mac
-    .venv/bin/activate
-    # On Windows
-    .venv\Scripts\activate
-4. Install requirements
-    ```bash
-    pip install -r requirements.txt
-## Table of Contents
-
-- [Building an End-to-End Retrieval-Augmented Generation System](#building-an-end-to-end-retrieval-augmented-generation-system)
-  - [Setup Instructions](#setup-instructions)
-  - [Table of Contents](#table-of-contents)
-  - [Introduction](#introduction)
-  - [Course Outline](#course-outline)
-    - [Lesson 1: Introduction to Retrieval-Augmented Generation (RAG)](#lesson-1-introduction-to-retrieval-augmented-generation-rag)
-    - [Lesson 2: Document Chunking Strategies](#lesson-2-document-chunking-strategies)
-
-## Introduction
-
-This repository contains the materials and code needed to build a complete Retrieval-Augmented Generation (RAG) system. A RAG system combines the strengths of large language models with an external knowledge base to improve the accuracy and relevance of generated responses. Throughout this course, you'll gain hands-on experience with the various components of a RAG system, from document chunking to deployment in the cloud.
-
-## Course Outline
-
-### Lesson 1: Introduction to Retrieval-Augmented Generation (RAG)
-- **Objective:** Understand the fundamentals of RAG and its applications.
-- **Topics:**
-  - Overview of RAG systems
-  - Challenges in large language models (e.g., hallucinations, outdated information)
-  - Basic components of a RAG system
-- **Practical Task:** Set up your development environment and familiarize yourself with the basic concepts.
-- **Resources:** 
-  - Basics
-  - More concepts
-
-### Lesson 2: Document Chunking Strategies
-- **Objective:** Learn how to effectively segment documents for better retrieval performance.
-- **Topics:**
-  - Chunking techniques: token-level, sentence-level, semantic-level
-  - Balancing context preservation with retrieval precision
-  - Small2Big and sliding window techniques
-- **Practical Task:** Implement chunking strategies on a sample dataset.
-- **Resources:**
-  - The five levels of chunking
-  - A guide to chunking
+# Actividad 01
+## Instrucciones para ejecutar el programa usando Docker
+1. Clonar el repositorio
+2. Abrir una terminal
+3. Navegar a la carpeta del repositorio
+4. Ejecutar el siguiente comando para construir la imagen:
+```bash
+docker compose build
+```
+5. Ejecutar el siguiente comando para correr el contenedor:
+```bash
+docker compose up
+```
+6. Abrir un navegador web y navegar a la dirección `localhost:8501`
+## Arquitectura del programa
+El programa está dividido en dos partes: el frontend y el backend. El frontend está hecho en Python usando Streamlit y el backend está hecho usando una clean architecture en Python.
+Se están usando las siguientes capas:
+- **Domain**: Contiene la lógica de negocio, expresándolas abstractamente agnóstico a la infrastructure que se usará. Algunos de sus componentes son:
+  - **Entities**: Contiene las clases que representan las entidades de la aplicación expresadas como interfaces o clases abstractas.
+  - **Repositories**: Contiene las interfaces que representan las operaciones que se pueden realizar sobre las entidades de la aplicación expresadas como clases abstractas.
+  - **Values**: Contiene las clases concretas de las entidades.
+- **Use Cases**: Contiene las clases que representan los casos de uso de la aplicación. Usualmente ocupando los repositorios del dominio para realizar las operaciones de manera agnóstica a la infrastructure.
+- **Infrastructure**: Contiene la implementación de los repositorios del domminio usando las librerias que mejor se ajusten a las necesidades de la aplicación.
+- **Adapters**: Contiene los métodos que adaptan las clases internas de nuestro Domain a las clases de las librerias que estamos usando (Infrastructure) y viceversa.
+- **App**: Contiene la configuración de la aplicación y la inyección de dependencias.
