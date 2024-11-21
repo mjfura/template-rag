@@ -11,3 +11,4 @@ class ChunkEntity:
     """
     content: str
     metadata: dict
+

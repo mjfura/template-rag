@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from src.loaders.domain import DocumentValue
+from src.embedding.domain import EmbeddingSentence
 from .value import ChunkValue
 class ChunkingRepository(ABC):
     """
@@ -10,4 +11,12 @@ class ChunkingRepository(ABC):
     
     @abstractmethod
     def basic_chunking(self, documents:list[DocumentValue]) -> list[ChunkValue]:
+        pass
+    
+    @abstractmethod
+    def combine_sentences(self, documents:list[DocumentValue], buffer_size:int) -> list[str]:
+        pass
+    
+    @abstractmethod
+    def semantic_chunking(self, embeddings_sentence:list[EmbeddingSentence],breakpoint_percentile:float) -> list[ChunkValue]:
         pass

@@ -3,9 +3,11 @@ from ..use_case import ChankingUseCase
 from src.loaders.adapters import create_document_value_adapter
 from langchain.schema import Document
 from src.chunking.domain import ChunkValue
-langchain_repository = LangchainChunkingRepository()
-chunking_use_case = ChankingUseCase(langchain_repository)
+from src.embedding.infrastructure import SentenceTransformerEmbeddingRepository
 
+langchain_repository = LangchainChunkingRepository()
+embedding_repository = SentenceTransformerEmbeddingRepository()
+chunking_use_case = ChankingUseCase(langchain_repository,embedding_repository)
 def pipeline_chunking(docs:list[Document])->list[ChunkValue]:
     """
     A pipeline function that takes a list of Langchain Document objects, converts them into DocumentValue objects,
@@ -16,5 +18,5 @@ def pipeline_chunking(docs:list[Document])->list[ChunkValue]:
         list[ChunkValue]: A list of ChunkValue objects created from the given Documents.
     """
     docs_values = create_document_value_adapter(docs)
-    chunks = chunking_use_case.get_chunks(docs_values)
+    chunks = chunking_use_case.semantic_chunking(docs_values)
     return chunks
