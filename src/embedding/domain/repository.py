@@ -38,3 +38,18 @@ class EmbeddingRepository(ABC,Generic[T]):
         """
         pass
     
+    @abstractmethod
+    def embed_list(self, texts:list[str]) -> list[list[float]]:
+        """
+        Embed list abstract method.
+        
+        This method receives a list of text and returns a list of embedded text.
+        
+        Args:
+            texts (list[str]): The list of text that will be embedded.
+            
+        Returns:
+            list[list[float]]: The list of embedded text.
+        """
+        pass
+    

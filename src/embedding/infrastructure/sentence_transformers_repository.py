@@ -1,6 +1,6 @@
-from langchain_huggingface import HuggingFaceEmbeddings
 from ..domain import EmbeddingRepository
-class HuggingFaceEmbeddingRepository(EmbeddingRepository[HuggingFaceEmbeddings]):
+from sentence_transformers import SentenceTransformer
+class SentenceTransformerEmbeddingRepository(EmbeddingRepository[SentenceTransformer]):
     """
     A concrete implementation of the EmbeddingRepository interface that uses the HuggingFaceEmbeddings class from the langchain-huggingface package.
     
@@ -8,13 +8,13 @@ class HuggingFaceEmbeddingRepository(EmbeddingRepository[HuggingFaceEmbeddings])
         embeddings_model (HuggingFaceEmbeddings): The HuggingFaceEmbeddings object used to embed text.
     """
     def __init__(self):
-        self.embeddings_model = HuggingFaceEmbeddings(model_name="sentence-transformers/paraphrase-MiniLM-L6-v2")
+        self.embeddings_model = SentenceTransformer("all-mpnet-base-v2")
 
     def embed(self, text: str) -> str:
-        return self.embeddings_model.embed_query(text)
+        return self.embeddings_model.encode(text)
     
-    def get_model(self)->HuggingFaceEmbeddings:
+    def get_model(self)->SentenceTransformer:
         return self.embeddings_model
     
     def embed_list(self, texts: list[str]) -> list[list[float]]:
-        return self.embeddings_model.embed_documents(texts)
+        return self.embeddings_model.encode(texts)

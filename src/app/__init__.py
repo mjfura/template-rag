@@ -10,21 +10,23 @@ def launch_app():
     launch_header(st)
     uploaded_files = st.file_uploader("Cargar archivo PDF", type=["pdf"], accept_multiple_files=True)
     if uploaded_files is not None:
-        for uploaded_file in uploaded_files:
-            st.write("Archivo cargado exitosamente.")
-            st.write("Guardando archivo en un Bucket...")
-            docs = pipeline_load_file(uploaded_file)
-            st.write('Convirtiendo Document a DocumentValue')
-            chunks = pipeline_chunking(docs)
-            print(f'Chunks: {chunks}')
-            st.write('Convirtiendo el primer chunk a embedding...')
-            embedding=embeddings_use_case.get_embedding(chunks[0].content)
-            st.write("Embedding:")
-            st.write(embedding)
-            list_ids=vector_store_use_case.add_documents(chunks)
-            st.write("Documentos guardados en el Vector Store.")
-            st.write("IDs de los documentos:")
-            st.write(list_ids)
+        
+        if st.button("Cargar"):
+            for uploaded_file in uploaded_files:
+                st.write("Guardando archivo en un Bucket...")
+                docs = pipeline_load_file(uploaded_file)
+                st.write('Convirtiendo Document a DocumentValue')
+                chunks = pipeline_chunking(docs)
+                print(f'Chunks: {chunks}')
+                st.write('Convirtiendo el primer chunk a embedding...')
+                embedding=embeddings_use_case.get_embedding(chunks[0].content)
+                st.write("Embedding:")
+                st.write(embedding)
+                list_ids=vector_store_use_case.add_documents(chunks)
+                st.write("Documentos guardados en el Vector Store.")
+                st.write("IDs de los documentos:")
+                st.write(list_ids)
+                st.write("----")
     
     st.subheader("Búsqueda de Documentos")
     query = st.text_input("Ingrese una consulta:")
