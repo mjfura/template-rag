@@ -1,4 +1,5 @@
 # Actividad 01
+
 ## Descripción
 Este programa permite al usuario subir uno o varios archivos PDF y mediante un pipeline RAG extraer chunks de texto de los archivos, luego almacenarlos en una DB vectorial (Qdrant) y finalmente devolver los ids de el total de chunks agregados por cada archivo.
 
@@ -6,7 +7,7 @@ También se agregó una interfaz para poder obtener los chunks más cercanos en 
 
 Así mismo, en la carpeta `/data/reglamentacion-uk` estamos adjuntando algunos archivos de prueba para poder hacer algunas pruebas.
 
-## Piepline
+## Pipeline
 El pipeline está compuesto por los siguientes pasos:
 1. **Almacenamiento del archivo en un Bucket**: Se almacena el archivo en un Bucket, en este caso por defecto se guardará localmente en el directorio `/bucket` del proyecto.
 2. **Extracción de texto**: Se extrae el texto de cada página del archivo PDF.
