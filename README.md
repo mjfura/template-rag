@@ -1,5 +1,11 @@
 # Actividad 01
 
+## Integrantes:
+  - **Marco Fura**
+  - **Gastón Trejo** 
+  - **Marcos Reiman**
+
+
 ## Descripción
 Este programa permite al usuario subir uno o varios archivos PDF y mediante un pipeline RAG extraer chunks de texto de los archivos, luego almacenarlos en una DB vectorial (Qdrant) y finalmente devolver los ids de el total de chunks agregados por cada archivo.
 
