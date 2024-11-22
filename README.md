@@ -11,7 +11,9 @@ Este programa permite al usuario subir uno o varios archivos PDF y mediante un p
 
 También se agregó una interfaz para poder obtener los chunks más cercanos en similitud según una query suministrada por el usuario.
 
-Así mismo, en la carpeta `/data/reglamentacion-uk` estamos adjuntando algunos archivos de prueba para poder hacer algunas pruebas.
+Así mismo, en la carpeta `/data/reglamentacion-uk` estamos adjuntando algunos archivos de prueba para poder hacer algunas consultas.
+
+Para poder visualizar la ejecución del pipeline completo, recomendamos ingresar tods los archivos de la carpeta `/data/reglamentacion-uk`, dar click en el botón `Cargar` y luego que termine de almacenarse los chunks se podrá realizar la consulta.
 
 ## Pipeline
 El pipeline está compuesto por los siguientes pasos:
