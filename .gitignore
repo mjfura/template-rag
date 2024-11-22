@@ -126,7 +126,7 @@ cython_debug/
 .local/
 
 # Data files
-data/
+
 *.csv
 *.h5
 *.hdf5
