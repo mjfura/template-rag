@@ -4,6 +4,17 @@ Este programa permite al usuario subir uno o varios archivos PDF y mediante un p
 
 También se agregó una interfaz para poder obtener los chunks más cercanos en similitud según una query suministrada por el usuario.
 
+Así mismo, en la carpeta `/data/reglamentacion-uk` estamos adjuntando algunos archivos de prueba para poder hacer algunas pruebas.
+
+## Piepline
+El pipeline está compuesto por los siguientes pasos:
+1. **Almacenamiento del archivo en un Bucket**: Se almacena el archivo en un Bucket, en este caso por defecto se guardará localmente en el directorio `/bucket` del proyecto.
+2. **Extracción de texto**: Se extrae el texto de cada página del archivo PDF.
+3. **Extracción de chunks de texto**: Se extraen los chunks de texto en base a un enfoque semántico.
+4. **Almacenamiento de los chunks en Qdrant**: Se almacenan los chunks en una DB vectorial (Qdrant).
+5. **Obtención de los ids de los chunks**: Se obtienen los ids de los chunks almacenados en Qdrant.
+6. **Obtención de los chunks más cercanos en similitud**: Se obtienen los chunks más cercanos en similitud a una query suministrada por el usuario.
+
 ## Instrucciones para ejecutar el programa usando Docker 
 1. Clonar el repositorio
 2. Abrir una terminal
