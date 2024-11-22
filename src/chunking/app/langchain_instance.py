@@ -7,8 +7,10 @@ from src.embedding.infrastructure import SentenceTransformerEmbeddingRepository
 
 langchain_repository = LangchainChunkingRepository()
 embedding_repository = SentenceTransformerEmbeddingRepository()
-chunking_use_case = ChankingUseCase(langchain_repository,embedding_repository)
-def pipeline_chunking(docs:list[Document])->list[ChunkValue]:
+chunking_use_case = ChankingUseCase(langchain_repository, embedding_repository)
+
+
+def pipeline_chunking(docs: list[Document]) -> list[ChunkValue]:
     """
     A pipeline function that takes a list of Langchain Document objects, converts them into DocumentValue objects,
     chunks them into smaller pieces, and converts the chunks back into Langchain Document objects.

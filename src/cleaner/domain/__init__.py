@@ -1,5 +1,3 @@
 from .repository import CleanerRepository
 
-__all__ = [
-    "CleanerRepository"
-]
+__all__ = ["CleanerRepository"]
