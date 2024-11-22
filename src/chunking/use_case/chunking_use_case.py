@@ -36,14 +36,14 @@ class ChankingUseCase(Generic[T]):
         combined_sentences = self.chunking_repository.combine_sentences(
             documents, buffer_size
         )
-        print(f"combined_sentences: {combined_sentences}")
+        print("Empezando a generar embeddings...")
         embeddings = self.embeding_repository.embed_list(combined_sentences)
-        print(f"embeddings: {embeddings}")
+        print("Embeddings generados. Empezando a agregarles las sentences...")
         embeddings_sentence = [
             EmbeddingSentence(combined_sentences[i], embeddings[i])
             for i in range(len(combined_sentences))
         ]
-        print(f"embeddings_sentence: {embeddings_sentence}")
+        print("Comenzando con el semantic chunking...")
         chunks = self.chunking_repository.semantic_chunking(
             embeddings_sentence, breakpoint_percentile
         )

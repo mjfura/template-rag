@@ -16,7 +16,7 @@ def launch_app() -> None:
             for uploaded_file in uploaded_files:
                 st.write("Guardando archivo en un Bucket...")
                 docs = pipeline_load_file(uploaded_file)
-                st.write("Convirtiendo Document a DocumentValue")
+                st.write("Generando chunks...")
                 chunks = pipeline_chunking(docs)
                 print(f"Chunks: {chunks}")
                 st.write("Convirtiendo el primer chunk a embedding...")

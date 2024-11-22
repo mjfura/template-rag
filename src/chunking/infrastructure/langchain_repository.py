@@ -48,16 +48,18 @@ class LangchainChunkingRepository(ChunkingRepository):
         Returns:
             list[str]: A list of combined sentences.
         """
+        print("documents queantity: ", len(documents))
         all_sentences = []
         for doc in documents:
             sentences = re.split(r"(?<=[.?!])\s+", doc.content)
             all_sentences.extend(sentences)
         combined_sentences = []
-        for i, sentence in enumerate(sentences):
+        for i, sentence in enumerate(all_sentences):
             combined = " ".join(
-                sentences[max(0, i - buffer_size) : i + buffer_size + 1]
+                all_sentences[max(0, i - buffer_size) : i + buffer_size + 1]
             )
             combined_sentences.append(combined)
+        print(f"combined_sentences: {len(combined_sentences)}")
         return combined_sentences
 
     def semantic_chunking(
@@ -77,7 +79,7 @@ class LangchainChunkingRepository(ChunkingRepository):
         """
 
         similarities = []
-
+        print(f"embeddings_sentence: {len(embeddings_sentence)}")
         for i in range(len(embeddings_sentence) - 1):
             embedding_current = embeddings_sentence[i].embedding
             embedding_next = embeddings_sentence[i + 1].embedding
@@ -103,5 +105,5 @@ class LangchainChunkingRepository(ChunkingRepository):
                 [d.sentence for d in embeddings_sentence[start_index:]]
             )
             chunks.append(ChunkValue(content=combined_text, metadata={}))
-
+        print(f"chunks quantity: {len(chunks)}")
         return chunks

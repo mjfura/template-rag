@@ -21,4 +21,7 @@ class SentenceTransformerEmbeddingRepository(EmbeddingRepository[SentenceTransfo
         return self.embeddings_model
 
     def embed_list(self, texts: list[str]) -> list[list[float]]:
-        return cast(list[list[float]], self.embeddings_model.encode(texts))
+        print("Iniciando embeddings")
+        embeddings = self.embeddings_model.encode(texts)
+        print("Embeddings finalizados")
+        return cast(list[list[float]], embeddings)
