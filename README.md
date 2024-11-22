@@ -1,4 +1,9 @@
 # Actividad 01
+## Descripción
+Este programa permite al usuario subir uno o varios archivos PDF y mediante un pipeline RAG extraer chunks de texto de los archivos, luego almacenarlos en una DB vectorial (Qdrant) y finalmente devolver los ids de el total de chunks agregados por cada archivo.
+
+También se agregó una interfaz para poder obtener los chunks más cercanos en similitud según una query suministrada por el usuario.
+
 ## Instrucciones para ejecutar el programa usando Docker 
 1. Clonar el repositorio
 2. Abrir una terminal
@@ -36,7 +41,6 @@ conda activate actividad_1
 streamlit run main_app.py
 ```
 7. Abrir un navegador web y navegar a la dirección que se muestra en la terminal (usualmente `localhost:8501`)
-
 
 ## Arquitectura del programa
 El programa está dividido en dos partes: el frontend y el backend. El frontend está hecho en Python usando Streamlit y el backend está hecho usando una clean architecture en Python.
