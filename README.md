@@ -66,7 +66,7 @@ python -m spacy download en_core_web_sm
 ```bash
 streamlit run main_app.py
 ```
-1. Abrir un navegador web y navegar a la dirección que se muestra en la terminal (usualmente `localhost:8501`)
+9. Abrir un navegador web y navegar a la dirección que se muestra en la terminal (usualmente `localhost:8501`)
 
 ## Arquitectura del programa
 El programa está dividido en dos partes: el frontend y el backend. El frontend está hecho en Python usando Streamlit y el backend está hecho usando una clean architecture en Python.
