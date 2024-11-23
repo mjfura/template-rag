@@ -33,11 +33,11 @@ El pipeline está compuesto por los siguientes pasos:
 ```bash
 docker compose build
 ```
-1. Ejecutar el siguiente comando para correr el contenedor:
+6. Ejecutar el siguiente comando para correr el contenedor:
 ```bash
 docker compose up
 ```
-1. Abrir un navegador web y navegar a la dirección `localhost:8501`
+7. Abrir un navegador web y navegar a la dirección `localhost:8501`
 
 ## Instrucciones para ejecutar el programa usando Conda (recomendado en caso de querer usar archivos grandes con más de 500 páginas)
 1. Clonar el repositorio
@@ -54,11 +54,15 @@ conda env create -f environment.yml -c conda-forge
 ```
 O por último, se puede usar el archivo `environment.yml` para instalar las dependencias manualmente.
 
-1. Activar el ambiente con el siguiente comando:
+6. Activar el ambiente con el siguiente comando:
 ```bash
 conda activate actividad_1
 ```
-1. Ejecutar el siguiente comando para correr el programa:
+7. Instalar en_core_web_sm
+```bash
+python -m spacy download en_core_web_sm
+```
+8. Ejecutar el siguiente comando para correr el programa:
 ```bash
 streamlit run main_app.py
 ```
