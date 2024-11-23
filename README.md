@@ -28,21 +28,23 @@ El pipeline está compuesto por los siguientes pasos:
 1. Clonar el repositorio
 2. Abrir una terminal
 3. Navegar a la carpeta del repositorio
-4. Ejecutar el siguiente comando para construir la imagen:
+4. Versión utilizada (Docker version 24.0.5)
+5. Ejecutar el siguiente comando para construir la imagen:
 ```bash
 docker compose build
 ```
-5. Ejecutar el siguiente comando para correr el contenedor:
+1. Ejecutar el siguiente comando para correr el contenedor:
 ```bash
 docker compose up
 ```
-6. Abrir un navegador web y navegar a la dirección `localhost:8501`
+1. Abrir un navegador web y navegar a la dirección `localhost:8501`
 
 ## Instrucciones para ejecutar el programa usando Conda (recomendado en caso de querer usar archivos grandes con más de 500 páginas)
 1. Clonar el repositorio
 2. Abrir una terminal
 3. Navegar a la carpeta del repositorio
-4. Crear un nuevo ambiente de Conda con el siguiente comando:
+4. Versión de Conda utilizada (conda 24.9.2)
+5. Crear un nuevo ambiente de Conda con el siguiente comando:
 ```bash
 conda env create -f environment.yml
 ```
@@ -52,15 +54,15 @@ conda env create -f environment.yml -c conda-forge
 ```
 O por último, se puede usar el archivo `environment.yml` para instalar las dependencias manualmente.
 
-5. Activar el ambiente con el siguiente comando:
+1. Activar el ambiente con el siguiente comando:
 ```bash
 conda activate actividad_1
 ```
-6. Ejecutar el siguiente comando para correr el programa:
+1. Ejecutar el siguiente comando para correr el programa:
 ```bash
 streamlit run main_app.py
 ```
-7. Abrir un navegador web y navegar a la dirección que se muestra en la terminal (usualmente `localhost:8501`)
+1. Abrir un navegador web y navegar a la dirección que se muestra en la terminal (usualmente `localhost:8501`)
 
 ## Arquitectura del programa
 El programa está dividido en dos partes: el frontend y el backend. El frontend está hecho en Python usando Streamlit y el backend está hecho usando una clean architecture en Python.
