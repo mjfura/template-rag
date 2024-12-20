@@ -36,7 +36,7 @@ RUN source /opt/conda/etc/profile.d/conda.sh && conda activate environment_proye
     && pip install \
     langchain_huggingface sentence-transformers langchain_qdrant qdrant-client \
     && pip install \
-    langchain_ollama pypdf langchain_openai fastembed spacy streamlit
+    langchain_ollama pypdf langchain_openai fastembed spacy streamlit ragas tqdm
 
 # Descargar el modelo spaCy en_core_web_sm
 RUN source /opt/conda/etc/profile.d/conda.sh && conda activate environment_proyecto_aplicado && \
