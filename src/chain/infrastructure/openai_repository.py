@@ -13,14 +13,14 @@ class OpenAIRepository(ChainRepository):
     """
 
     def __init__(self) -> None:
-        llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+        self.llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
         self.prompt = hub.pull("rlm/rag-prompt")
         self.rewrite_prompt = hub.pull("langchain-ai/rewrite")
 
         self.rag_chain = (
             {"context": RunnablePassthrough(), "question": RunnablePassthrough()}
             | self.prompt
-            | llm
+            | self.llm
             | StrOutputParser()
         )
 
