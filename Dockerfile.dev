@@ -1,0 +1,30 @@
+FROM python:3.11.6-slim
+# Actualizar paquetes e instalar dependencias necesarias para compilación
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    gcc \
+    g++ \
+    libffi-dev \
+    libssl-dev \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+# Establece la variable de entorno para no generar archivos .pyc
+ENV PYTHONDONTWRITEBYTECODE 1
+
+# Establece la variable de entorno para no usar buffer en stdout y stderr
+ENV PYTHONUNBUFFERED 1
+
+# Establece el directorio de trabajo en el contenedor
+WORKDIR /app
+
+# Copia el archivo requirements.txt en el contenedor
+COPY requirements_docker.txt /app/
+# Instala las dependencias desde el archivo requirements.txt
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements_docker.txt
+
+RUN python -m spacy download en_core_web_sm
+
+# Copia toda la aplicación en el contenedor
+COPY . /app/
+

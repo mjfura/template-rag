@@ -65,8 +65,13 @@ def launch_app() -> None:
             for message in st.session_state["history_messages"]:
                 messages.chat_message(message["author"]).write(message["message"])
             messages.chat_message("user").write(prompt)
+            loader_placeholder = st.empty()
+            loader_placeholder.markdown("🤖 **Evaluando consulta...**")
             basic_response = application.pipeline_rag(prompt)
+            loader_placeholder.empty()
+            loader_placeholder.markdown("🤖 **Evaluando consulta...**")
             advanced_response = application.pipeline_rag_advanced(prompt)
+            loader_placeholder.empty()
             messages.chat_message("assistant").write(
                 f"**Basic Retriever:** {basic_response}"
             )
@@ -96,9 +101,8 @@ def launch_app() -> None:
                 df_result_basic, df_result_advanced = evaluate_retrievers(
                     application, data_ground_truth
                 )
-            st.write("Resultados del Retriever Básico")
+            st.subheader("Resultados del Retriever Básico")
             st.write(df_result_basic)
-            st.write("----")
             st.write(
                 "Mean Faithfulness: ", round(df_result_basic["faithfulness"].mean(), 4)
             )
@@ -114,7 +118,8 @@ def launch_app() -> None:
                 "Mean Context precision: ",
                 round(df_result_basic["context_precision"].mean(), 4),
             )
-            st.write("Resultados del Retriever Avanzado")
+            st.write("----")
+            st.subheader("Resultados del Retriever Avanzado")
             st.write(df_result_advanced)
             st.write("----")
             st.write(
