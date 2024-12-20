@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Dict
+from typing import Dict, Any
 
 
 @dataclass
@@ -13,4 +13,4 @@ class ChunkEntity:
     """
 
     content: str
-    metadata: Dict[str, str]
+    metadata: Dict[str, Any]

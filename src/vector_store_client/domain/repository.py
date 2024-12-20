@@ -16,7 +16,7 @@ class VectorStoreRepository(ABC):
         This method receives a list of DocumentValue objects and adds them to the vector store. It returns a list of strings representing the document IDs.
 
         Args:
-            documents (list[DocumentValue]): A list of DocumentValue objects.
+            documents (list[ChunkValue]): A list of DocumentValue objects.
 
         Returns:
             list[str]: A list of strings representing the document IDs.

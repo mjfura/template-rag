@@ -33,3 +33,8 @@ class SpacyRepository(CleanerRepository):
         doc = self.nlp(text)
         tokens = [token.lemma_ for token in doc]
         return " ".join(tokens)
+
+    def get_entities(self, text: str) -> list[tuple[str, str]]:
+        doc = self.nlp(text)
+        entities = [(ent.text, ent.label_) for ent in doc.ents]
+        return entities

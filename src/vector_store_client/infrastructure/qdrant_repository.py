@@ -7,7 +7,7 @@ from src.chunking.adapters import (
     create_chunk_from_document,
 )
 from langchain.embeddings.base import Embeddings
-from typing import cast
+from typing import cast, Optional
 
 
 class QdrantVectorStoreRepository(VectorStoreRepository):
@@ -22,14 +22,29 @@ class QdrantVectorStoreRepository(VectorStoreRepository):
         vector_store (QdrantVectorStore): The Qdrant vector store object.
     """
 
-    def __init__(self, embedding_model: Embeddings, collection_name: str) -> None:
-        self.vector_store = QdrantVectorStore.from_documents(
-            [],
-            embedding=embedding_model,
-            location=":memory:",
-            collection_name=collection_name,
-            retrieval_mode=RetrievalMode.DENSE,
-        )
+    def __init__(
+        self,
+        embedding_model: Embeddings,
+        collection_name: str,
+        sparse_embedding_model: Optional[Embeddings] = None,
+    ) -> None:
+        if sparse_embedding_model is None:
+            self.vector_store = QdrantVectorStore.from_documents(
+                [],
+                embedding=embedding_model,
+                location=":memory:",
+                collection_name=collection_name,
+                retrieval_mode=RetrievalMode.DENSE,
+            )
+        else:
+            self.vector_store = QdrantVectorStore.from_documents(
+                [],
+                embedding=embedding_model,
+                sparse_embedding_model=sparse_embedding_model,
+                location=":memory:",
+                collection_name=collection_name,
+                retrieval_mode=RetrievalMode.HYBRID,
+            )
 
     def add_documents(self, chunks: list[ChunkValue]) -> list[str]:
         """

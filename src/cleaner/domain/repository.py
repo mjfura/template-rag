@@ -52,3 +52,18 @@ class CleanerRepository(ABC):
             str: The text with lemmatization.
         """
         pass
+
+    @abstractmethod
+    def get_entities(self, text: str) -> list[tuple[str, str]]:
+        """
+        Get entities abstract method.
+
+        This method receives a text and returns a list of entities.
+
+        Args:
+            text (str): The text that will be cleaned.
+
+        Returns:
+            list[str]: A list of entities.
+        """
+        pass

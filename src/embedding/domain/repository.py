@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import TypeVar, Generic
+from torch import Tensor
 
 T = TypeVar("T")
 
@@ -54,5 +55,20 @@ class EmbeddingRepository(ABC, Generic[T]):
 
         Returns:
             list[list[float]]: The list of embedded text.
+        """
+        pass
+
+    @abstractmethod
+    def embed_tensor(self, text: str) -> Tensor:
+        """
+        Embed tensor abstract method.
+
+        This method receives a text and returns the same text embedded as a tensor.
+
+        Args:
+            text (str): The text that will be embedded.
+
+        Returns:
+            T: The text embedded as a tensor.
         """
         pass

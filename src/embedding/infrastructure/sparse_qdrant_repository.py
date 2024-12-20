@@ -1,26 +1,24 @@
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_qdrant import FastEmbedSparse
 from ..domain import EmbeddingRepository
 from typing import cast
 from torch import Tensor
 
 
-class HuggingFaceEmbeddingRepository(EmbeddingRepository[HuggingFaceEmbeddings]):
+class SparseQdrantEmbeddingRepository(EmbeddingRepository[FastEmbedSparse]):
     """
-    A concrete implementation of the EmbeddingRepository interface that uses the HuggingFaceEmbeddings class from the langchain-huggingface package.
+    A concrete implementation of the EmbeddingRepository interface that uses the FastEmbedSparse class from the langchain_qdrant package.
 
     Attributes:
-        embeddings_model (HuggingFaceEmbeddings): The HuggingFaceEmbeddings object used to embed text.
+        embeddings_model (FastEmbedSparse): The FastEmbedSparse object used to embed text.
     """
 
     def __init__(self) -> None:
-        self.embeddings_model = HuggingFaceEmbeddings(
-            model_name="sentence-transformers/paraphrase-MiniLM-L6-v2"
-        )
+        self.embeddings_model = FastEmbedSparse(model_name="Qdrant/bm25")
 
     def embed(self, text: str) -> list[float]:
         return cast(list[float], self.embeddings_model.embed_query(text))
 
-    def get_model(self) -> HuggingFaceEmbeddings:
+    def get_model(self) -> FastEmbedSparse:
         return self.embeddings_model
 
     def embed_list(self, texts: list[str]) -> list[list[float]]:
