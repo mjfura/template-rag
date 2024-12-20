@@ -1,6 +1,7 @@
 from ..domain import EmbeddingRepository
 from sentence_transformers import SentenceTransformer
 from typing import cast
+from torch import Tensor
 
 
 class SentenceTransformerEmbeddingRepository(EmbeddingRepository[SentenceTransformer]):
@@ -16,6 +17,9 @@ class SentenceTransformerEmbeddingRepository(EmbeddingRepository[SentenceTransfo
 
     def embed(self, text: str) -> list[float]:
         return cast(list[float], self.embeddings_model.encode(text))
+
+    def embed_tensor(self, text: str) -> Tensor:
+        return self.embeddings_model.encode(text, convert_to_tensor=True)
 
     def get_model(self) -> SentenceTransformer:
         return self.embeddings_model
