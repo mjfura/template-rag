@@ -244,7 +244,7 @@ dependencies:
       - pypika==0.48.9
       - pyproject-hooks==1.2.0
       - pysbd==0.3.4
-      - python-dateutil==2.8.2
+      - python-dateutil==2.9.0.post0
       - python-dotenv==1.0.1
       - python-iso639==2024.10.22
       - python-magic==0.4.27

@@ -1,13 +1,15 @@
-FROM python:3.11.6-slim
+FROM continuumio/miniconda3
 # Actualizar paquetes e instalar dependencias necesarias para compilación
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
+RUN apt-get update && apt-get install -y \
     gcc \
     g++ \
+    make \
     libffi-dev \
     libssl-dev \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
+    libbz2-dev \
+    libsqlite3-dev \
+    zlib1g-dev \
+    && apt-get clean
 # Establece la variable de entorno para no generar archivos .pyc
 ENV PYTHONDONTWRITEBYTECODE 1
 
@@ -18,10 +20,12 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /app
 
 # Copia el archivo requirements.txt en el contenedor
-COPY requirements_docker.txt /app/
+COPY environment_container.yml /app/
 # Instala las dependencias desde el archivo requirements.txt
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements_docker.txt
+RUN conda env create -f environment_container.yml -y
+
+RUN echo "source /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc \
+    && echo "conda activate environment_proyecto_aplicado" >> ~/.bashrc
 
 RUN python -m spacy download en_core_web_sm
 

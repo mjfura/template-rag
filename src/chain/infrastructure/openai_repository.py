@@ -57,13 +57,8 @@ class OpenAIRepository(ChainRepository):
             str: The answer to the question.
         """
         base_prompt = f"Context: {context}\nQuestion: {question}"
-        print(f"Base prompt: {base_prompt}")
         # Mejorar el prompt usando el modelo de rewriting
-        print(f"Prompt: {self.rewrite_prompt}")
-        improved_prompt = self.rewrite_prompt.format(x=base_prompt)
-        print(f"Improved prompt: {improved_prompt}")
-        # Separar el contexto mejorado y la pregunta mejorada
-        # improved_context, improved_question = self._split_improved_prompt(improved_prompt)
+        _improved_prompt = self.rewrite_prompt.format(x=base_prompt)
         response = self.rag_chain.invoke({"context": context, "question": question})
         if not isinstance(response, str):
             raise TypeError(f"Expected response to be str, but got {type(response)}")

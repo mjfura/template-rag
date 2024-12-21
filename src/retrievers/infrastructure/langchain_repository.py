@@ -24,14 +24,13 @@ class LangchainRetrieverRepository(RetrieverRepository):
                 models.FieldCondition(
                     key="entities",  # Campo en la metadata
                     match=models.MatchValue(
-                        value=entity
+                        value=entity,
                     ),  # Coincide con el texto de la entidad
                 )
             )
-        filter_conditions = models.Filter(must=conditions)
 
-        docs = self.retriever.get_relevant_documents(
-            query=query, search_kwargs={"filter": filter_conditions}
-        )
+        _filter_conditions = models.Filter(should=conditions)
+
+        docs = self.retriever.invoke(query)
         chunks = create_chunk_from_document(docs)
         return chunks

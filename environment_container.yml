@@ -55,7 +55,6 @@ dependencies:
       - deprecated==1.2.15
       - distro==1.9.0
       - durationpy==0.9
-      - en-core-web-sm==3.8.0
       - fastapi==0.115.5
       - fastembed==0.4.2
       - filelock==3.16.1

@@ -32,11 +32,11 @@ SHELL ["/bin/bash", "-c"]
 # Instalar paquetes en bloques para reducir problemas de resolución
 RUN source /opt/conda/etc/profile.d/conda.sh && conda activate environment_proyecto_aplicado && \
     pip install \
-    langchain langchain_community langchain_chroma langchain_text_splitters \
+    langchain==0.3.7 langchain_community==0.3.5 langchain_chroma==0.1.4 langchain_text_splitters==0.3.2 \
     && pip install \
-    langchain_huggingface sentence-transformers langchain_qdrant qdrant-client \
+    langchain_huggingface==0.1.2 sentence-transformers==3.2.1 langchain_qdrant==0.2.0 qdrant-client==1.8.0 \
     && pip install \
-    langchain_ollama pypdf langchain_openai fastembed spacy streamlit ragas tqdm
+    langchain_ollama==0.2.0 pypdf==5.1.0 langchain_openai==0.2.6 fastembed==0.4.1 spacy==3.8.2 streamlit==1.40.0 ragas==0.2.6 tqdm==4.67.0
 
 # Descargar el modelo spaCy en_core_web_sm
 RUN source /opt/conda/etc/profile.d/conda.sh && conda activate environment_proyecto_aplicado && \
