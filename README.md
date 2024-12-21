@@ -28,16 +28,20 @@ El pipeline está compuesto por los siguientes pasos:
 1. Clonar el repositorio
 2. Abrir una terminal
 3. Navegar a la carpeta del repositorio
-4. Versión utilizada (Docker version 24.0.5)
-5. Ejecutar el siguiente comando para construir la imagen:
+4. Crear un archivo `.env` en la raíz del proyecto con las siguientes variables de entorno:
+```bash
+OPENAI_API_KEY=<API_KEY>
+```
+5. Versión utilizada (Docker version 24.0.5)
+6. Ejecutar el siguiente comando para construir la imagen:
 ```bash
 docker compose build
 ```
-6. Ejecutar el siguiente comando para correr el contenedor:
+7. Ejecutar el siguiente comando para correr el contenedor:
 ```bash
 docker compose up
 ```
-7. Abrir un navegador web y navegar a la dirección `localhost:8501`
+8. Abrir un navegador web y navegar a la dirección `localhost:8501`
 
 ## Instrucciones para ejecutar el programa usando Conda (recomendado en caso de querer usar archivos grandes con más de 500 páginas)
 1. Clonar el repositorio
